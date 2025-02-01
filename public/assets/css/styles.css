@@ -1,0 +1,770 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* La Navbar */
+.navbar {
+    width: 100%;
+    height: 12vh;
+    background-color: rgb(246, 234, 234);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Partie Gauche */
+.left-nav {
+    width: 25%;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 90px;
+    height: auto;
+}
+
+/* Partie Centre */
+.mid-nav {
+    width: 50%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+
+.mid-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.mid-nav ul li {
+    position: relative;
+}
+
+.mid-nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    padding: 10px 35px;
+    transition: color 0.3s ease;
+    font-family: 'Raleway', sans-serif;
+}
+
+.mid-nav a:hover {
+    color: #efa507;
+}
+
+/* Menu déroulant */
+.dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0.5rem 0;
+    min-width: 150px; 
+    border-radius: 5px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdown-content li {
+    list-style: none;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Partie Droite */
+.right-nav {
+    width: 25%;
+    height: 12vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.right-nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+/* Top Section */
+.top-section {
+    width: 100%;
+    height: 88vh;
+    position: relative;
+    background-image: url('../assets/background1.jpg');
+    background-attachment: fixed;
+    background-color: #fff3da;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    display: flex;
+}
+
+/* Le filtre opacité */
+.top-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0.5, 0, 0, 0.5), rgba(0, 0, 0, 0.6));
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.content {
+    position: absolute;
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 3;
+}
+
+/* Style pour le titre */
+.content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Style pour le sous-titre */
+.content p {
+    font-size: 1.5rem; 
+    font-weight: 300;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #efa507;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #d18e06;
+}
+
+
+
+
+/* ---------- Deuxième Page ------------ */
+.presentation-spa{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.left-page{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-box{
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: green; */
+}
+
+.content-top{
+    color: #e1b908;
+    font-weight: 200; 
+    font-family: 'Raleway', sans-serif;
+    /* background-color: red; */
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: baseline;
+}
+
+.content-mid{
+    width: 100%;
+    height: 130px;
+    color: #1C1C1C;
+    font-size: 24px;
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 2px;
+    /* background-color: blue; */
+    margin: 0;
+    display: flex;
+    align-items: end;
+}
+
+.content-bottom{
+    /* background-color: #d18e06; */
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.right-page{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Box de droite avec l'image */
+.right-box{
+    width: 75%;
+    height: 75%;
+    background-color: rgb(44, 148, 148);
+    position: relative;
+    background-image: url('../assets/spa.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
+    border-radius: 20%;
+    z-index: 1;
+    display: flex;
+    box-shadow: 2px 2px 25px 5px rgba(0,0,0,0.30);
+}
+
+/* Le hover */
+.right-box:hover{
+    width: 75%;
+    height: 75%;
+    background-color: rgb(44, 148, 148);
+    position: relative;
+    background-image: url('../assets/spa.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0%;
+    z-index: 1;
+    display: flex;
+}
+
+
+/* ---------- Troisième Page Chambre ---------- */
+.presentation-chambres{
+    width: 100%;
+    height: 100vh;
+    /* background-color: beige; */
+}
+
+.top-section3{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    /* background-color: blue; */
+    flex-direction: column;
+}
+
+.undertitle{
+    width: 30%;
+    height: 40%;
+    /* background-color: yellow; */
+    margin-bottom: 25px;
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.global-section3{
+    width: 100%;
+    height: 70vh;
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Image de gauche */
+.left-section3{
+    width: 40%;
+    height: 80%;
+    background-color: red;
+    position: relative;
+    background-image: url('../assets/chambre1.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
+    border-radius:  64% 36% 38% 62% / 45% 49% 51% 55%;
+    /* border-radius: 5%; */
+    box-shadow: 2px 2px 25px 5px rgba(0,0,0,0.30);
+    z-index: 1;
+    display: flex;
+}
+
+.left-section3:hover{
+    width: 40%;
+    height: 80%;
+    background-color: red;
+    position: relative;
+    background-image: url('../assets/chambre1.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5%;
+    /* border-radius:  64% 36% 38% 62% / 45% 49% 51% 55%; */
+    z-index: 1;
+    display: flex;
+}
+
+/* Image de droite */
+.right-section3{
+    width: 40%;
+    height: 80%;
+    background-color: blue;
+    position: relative;
+    background-image: url('../assets/chambre3.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    transition: all 0.5s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 42% 58% 38% 62% / 45% 49% 51% 55%;
+    z-index: 1;
+    display: flex;
+    box-shadow: 2px 2px 25px 5px rgba(0,0,0,0.30);
+}
+
+.right-section3:hover{
+    width: 40%;
+    height: 80%;
+    background-color: red;
+    position: relative;
+    background-image: url('../assets/chambre3.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5%;
+    z-index: 1;
+    display: flex;
+}
+
+.mid-section3{
+    width: 40%;
+    height: 25%;
+    background-color: rgb(255, 252, 252);
+    border: 0.1px solid #cac6c6;
+    position: absolute;
+    z-index: 1;
+    margin-top: 28%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-content3{
+    width: 80%;
+    height: 50%;
+    /* background-color: blue; */
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.btn-plus3{
+    width: 25%;
+    height: 20%;
+    border-radius: 1px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #100f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn-content3{
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+
+
+/* ------------- Quatrième page ------------- */
+.presentation-restaurant{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+/* Box à gauche avec l'image */
+.left-box-r{
+    width: 75%;
+    height: 75%;
+    background-color: rgb(44, 148, 148);
+    position: relative;
+    background-image: url('../assets/restaurant1.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
+    border-radius: 20%;
+    z-index: 1;
+    display: flex;
+    box-shadow: 2px 2px 25px 5px rgba(0,0,0,0.30);
+}
+
+/* Le hover */
+.left-box-r:hover{
+    width: 90%;
+    height: 75%;
+    background-color: rgb(44, 148, 148);
+    position: relative;
+    background-image: url('../assets/restaurant1.jpg');
+    background-color: #efa507;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0%;
+    z-index: 1;
+    display: flex;
+}
+
+.left-page-r{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-page-r{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.right-box-r{
+    width: 80%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: green; */
+}
+
+.content-top-r{
+    color: #e1b908;
+    font-weight: 200; 
+    font-family: 'Raleway', sans-serif;
+    /* background-color: red; */
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: baseline;
+    justify-content: end;
+}
+
+.content-mid-r{
+    width: 100%;
+    height: 130px;
+    color: #1C1C1C;
+    font-size: 24px;
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 2px;
+    /* background-color: blue; */
+    margin: 0;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    text-align: end;
+}
+
+.content-bottom-r{
+    /* background-color: #d18e06; */
+    font-size: small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: end;
+}
+
+
+/* ---------------- AVIS CLIENTS PAGE ------------------ */
+
+.top-page-5{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    text-align: end;
+
+}
+
+.content-top5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    /* background-color: blue; */
+    flex-direction: column;
+
+}
+.container {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.testimonial {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  padding: 50px 0;
+  overflow: hidden;
+}
+.testimonial .image {
+  height: 170px;
+  width: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.testimonial .slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 30px;
+  height: 100%;
+  width: 100%;
+}
+.slide p {
+  text-align: center;
+  padding: 0 160px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+.slide .quote-icon {
+  font-size: 30px;
+  color: #4070f4;
+}
+.slide .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.details .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+.details .job {
+  font-size: 12px;
+  font-weight: 400;
+  color: #333;
+}
+/* swiper button css */
+.nav-btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transform: translateY(30px);
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+}
+.nav-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.nav-btn::after,
+.nav-btn::before {
+  font-size: 20px;
+  color: #fff;
+}
+.swiper-pagination-bullet {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.swiper-pagination-bullet-active {
+  background-color: #4070f4;
+}
+@media screen and (max-width: 768px) {
+  .slide p {
+    padding: 0 20px;
+  }
+  .nav-btn {
+    display: none;
+  }
+}
+
+/*-------------- Footer ----------------------- */
+
+        /* Footer styles */
+        footer {
+            background-color: #1c1c1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+ 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+ 
+        .footer-content h2 {
+            margin-bottom: 10px;
+        }
+ 
+        .footer-content a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid #fff;
+           
+        }
+       
+        .footer-content .info {
+            margin: 20px 0;
+        }
+        .footer-content .info h4 {
+            color: #946e55 ;
+        }
+ 
+        .footer-content .logos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+ 
+        .footer-content .socials {
+            display: flex;
+            gap: 0;
+            margin-right: 130px;
+        }
+ 
+        .footer-content .socials a {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #fff;
+ 
+        }
+ 
+        .separator {
+            width: 50%;
+            height: 3px;
+            background-color:rgb(187, 107, 54);
+            margin: 30px 0; 
+        }
+ 
+        .divs-container {
+            width: 100%;
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+           
+         
+        }
+ 
+        .divs-container .socials a {
+       
+            width:-45px;
+            height:auto;
+        }
+       
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+ 
+            .form-section, .map-section {
+                width: 100%;
+            }
+ 
+            .form-section {
+                padding: 20px;
+            }
+        }
+ 
+        @media (max-width: 480px) {
+            .form-section h3 {
+                font-size: 1.5em;
+            }
+ 
+            .form-section input, .form-section select, .form-section textarea {
+                font-size: 0.9em;
+            }
+ 
+            .form-section button {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+        }

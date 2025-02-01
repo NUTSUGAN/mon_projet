@@ -1,0 +1,13 @@
+# Active le moteur de réécriture
+RewriteEngine On
+
+# Forcer HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Vérifier si le fichier ou dossier existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger les pages inexistantes vers une page d'erreur (avec code 300 ou autre)
+RewriteRule ^(.*)$ /error.php?code=300&path=$1 [L]
