@@ -1,85 +1,14 @@
-<?php
-
-
-require_once __DIR__ . '/../vendor/autoload.php';
-
-use Config\Database;
-
-// Démarrage de la session si elle n'est pas déjà active
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Définir la racine du projet
-define('ROOT', dirname(__DIR__));
-
-// Charger l'autoloader et les dépendances via bootstrap
-require_once ROOT . '/src/bootstrap.php';
-
-// Debug temporaire (à rendre conditionnel ou à supprimer pour production)
-if (isset($_GET['debug'])) {
-    echo '<pre>';
-    print_r($_SESSION['user']);
-    echo '</pre>';
-}
-
-
-
-$db = Database::getConnection();
-
-// Charger le contrôleur des chambres (AdminController)
-// $adminController = new AdminController($db);
-
-
-
-// Obtenir la liste des chambres
-// $rooms = $adminController->listRooms();
-
-
-
-// Gestion de la connexion utilisateur
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Charger le modèle utilisateur
-    $userModel = new User($db);
-
-    // Vérifier les identifiants utilisateur
-    $user = $userModel->login($email, $password);
-
-    if ($user) {
-        // Stocker les informations utilisateur dans la session
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'username' => $user['username'],
-            'role' => $user['role']
-        ];
-
-        // Redirection en fonction du rôle de l'utilisateur
-        if ($_SESSION['user']['role'] === 'admin') {
-            header('Location: ' . ROOT . '/views/admin/rooms_create.php');
-            exit;
-        } else {
-            header('Location: /public/index.php');
-            exit;
-        }
-    } else {
-        echo "<p style='color:red;'>Email ou mot de passe incorrect.</p>";
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Swiper.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/hotel_projet/public/assets/css/styles.css">
+    <link rel="stylesheet" href="/mon_projet/public/assets/css/styles.css">
     <title>La Flèche d'Argent</title>
 
 </head>
@@ -246,11 +175,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['pass
         </div>
       </section>
 
-      <!-- Swiper JS -->
-      <script src="../public/assets/js/swiper-bundle.min.js"></script>
       <!-- JavaScript -->
-      <script src="../public/assets/js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="assets/js/script.js"></script>
 
       <?php include '../src/views/partials/footer.php'; ?>
 </body>
 </html>
+

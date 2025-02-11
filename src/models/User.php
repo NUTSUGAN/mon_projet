@@ -1,4 +1,8 @@
 <?php
+namespace Models;
+
+use PDO;
+
 class User {
     private $conn;
     private $table = 'users';
@@ -14,17 +18,20 @@ class User {
         $this->conn = $db;
     }
 
+    // Méthode pour assigner les valeurs
+    public function setData($username, $email, $password, $address, $phone) {
+        $this->username = htmlspecialchars(strip_tags($username));
+        $this->email = htmlspecialchars(strip_tags($email));
+        $this->password = password_hash($password, PASSWORD_BCRYPT);
+        $this->address = htmlspecialchars(strip_tags($address));
+        $this->phone = htmlspecialchars(strip_tags($phone));
+    }
+
     // Inscription de l'utilisateur
     public function register() {
         $query = "INSERT INTO " . $this->table . " (username, email, password, address, phone) 
                   VALUES (:username, :email, :password, :address, :phone)";
         $stmt = $this->conn->prepare($query);
-
-        $this->username = htmlspecialchars(strip_tags($this->username));
-        $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
-        $this->address = htmlspecialchars(strip_tags($this->address));
-        $this->phone = htmlspecialchars(strip_tags($this->phone));
 
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email);
@@ -32,7 +39,12 @@ class User {
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':phone', $this->phone);
 
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            var_dump($stmt->errorInfo()); // Debugging des erreurs SQL
+            return false;
+        }
     }
 
     // Connexion de l'utilisateur
@@ -41,9 +53,9 @@ class User {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-    
+
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($user && password_verify($password, $user['password'])) {
             return $user;
         }

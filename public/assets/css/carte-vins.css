@@ -127,7 +127,7 @@ body {
     width: 100%;
     height: 88vh;
     position: relative;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url('../assets/vins.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url('../images/vins.jpg');
     background-color: #efa507;
     background-size: cover;
     background-position: center;
@@ -318,7 +318,7 @@ body {
     height: 60vh;
     background-color: purple;
     margin-left: 5%;
-    background-image: url('../assets/cave-vins.png');
+    background-image: url('../images/cave-vins.png');
     border-radius: 50% 50% 46% 54% / 47% 25% 75% 53%;
     background-color: #efa507;
     background-size: cover;
@@ -332,7 +332,7 @@ body {
     height: 60vh;
     background-color: purple;
     margin-left: 5%;
-    background-image: url('../assets/cave-vins.png');
+    background-image: url('../images/cave-vins.png');
     border-radius: 2%;
     background-color: #efa507;
     background-size: cover;
@@ -388,7 +388,7 @@ body {
     margin-top: 5%;
     background-color: red;
     position: relative;
-    background-image: url('../assets/carte-vins.jpg');
+    background-image: url('../images/carte-vins.jpg');
     background-color: #efa507;
     background-size: cover;
     background-repeat: no-repeat;
@@ -406,7 +406,7 @@ body {
     height: 100%;
     background-color: red;
     position: relative;
-    background-image: url('../assets/carte-vins.jpg');
+    background-image: url('../images/carte-vins.jpg');
     background-color: #efa507;
     background-size: cover;
     background-position: center;
@@ -422,7 +422,7 @@ body {
     width: 100%;
     height: 88vh;
     position: relative;
-    background-image: url('../assets/background1.jpg');
+    background-image: url('../images/background1.jpg');
     background-color: #efa507;
     background-size: cover;
     background-position: center;

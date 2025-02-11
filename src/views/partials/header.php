@@ -12,36 +12,38 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav class="navbar">
         <!-- Partie Gauche -->
         <div class="left-nav">
-            <div class="logo">
-                <img src="/hotel_projet/public/assets/logo.png" alt="Logo">
-            </div>
+            <a href="index.php">
+                <div class="logo">
+                    <img src="/mon_projet/public/assets/images/logo.png" alt="Logo">
+                </div>
+            </a>
         </div>
 
         <!-- Partie Centre -->
         <div class="mid-nav">
             <ul>
-                <li><a href="/hotel_projet/public/index.php">Accueil</a></li>
+                <li><a href="/mon_projet/public/index.php">Accueil</a></li>
 
                 <!-- Menu déroulant Chambres -->
                 <li class="dropdown">
-                    <a href="/hotel_projet/src/views/chambres/chambre.php">Chambres</a>
+                    <a href="/mon_projet/public/chambre.php">Chambres</a>
                 </li>
 
                 <!-- Menu déroulant Restaurant -->
                 <li class="dropdown">
-                    <a href="#">Restaurant</a>
+                    <a>Restaurant</a>
                     <ul class="dropdown-content">
-                        <li><a href="/hotel_projet/src/views/restaurant/chef-equipe.php">Chef & Équipe</a></li>
-                        <li><a href="/hotel_projet/src/views/restaurant/carte-vins.php">Carte des vins</a></li>
-                        <li><a href="/hotel_projet/src/views/restaurant/notre-carte.php">Notre Carte</a></li>
+                        <li><a href="/mon_projet/public/chef-equipe.php">Chef & Équipe</a></li>
+                        <li><a href="/mon_projet/public/carte-vins.php">Carte des vins</a></li>
+                        <li><a href="/mon_projet/public/notre-carte.php">Notre Carte</a></li>
                     </ul>
                 </li>
 
                 <!-- Menu déroulant Services -->
                 <li class="dropdown">
-                    <a href="/hotel_projet/public/service.php">Services</a>
+                    <a href="/mon_projet/public/service.php">Services</a>
                 </li>
-                <li><a href="/hotel_projet/src/views/contact.php">Contact</a></li>
+                <li><a href="/mon_projet/public/contact.php">Contact</a></li>
             </ul>
         </div>
 
@@ -49,13 +51,13 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="right-nav">
 
             <?php if (!empty($_SESSION['user']['username'])): ?>
-                <a href="/hotel_projet/src/views/auth/dashboard.php">Mon Profil</a>
-                <a href="/hotel_projet/src/views/auth/logout.php">Déconnexion</a>
+                <a href="/mon_projet/public/auth/dashboard.php">Mon Profil</a>
+                <a href="/mon_projet/src/Views/Auth/logout.php">Déconnexion</a>
             <?php else: ?>
-                <a href="/hotel_projet/src/views/auth/login.php">Connexion</a>
+                <a href="/mon_projet/src/Views/Auth/login.php">Connexion</a>
             <?php endif; ?>
 
-            <a href="/hotel_projet/src/views/reservation.php" class="reservation">Réserver</a>
+            <a href="/mon_projet/public/reservation.php" class="reservation">Réserver</a>
 
         </div>
     </nav>

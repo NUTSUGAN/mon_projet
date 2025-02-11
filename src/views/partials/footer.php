@@ -2,7 +2,7 @@
         <div class="footer-content">
  
             <h2>Recevez nos dernières offres et actualités</h2>
-            <a href="#">INSCRIVEZ-VOUS ></a>
+            <a href="/mon_projet/src/Views/Auth/register.php">INSCRIVEZ-VOUS ></a>
  
             <div class="info">
                 <h4>LA FLÊCHE D'ARGENT</h4>
@@ -27,12 +27,12 @@
                 </div>
                
                 <div class="socials">
-                    <a href="#"><img src="assets/facebook-icon 1.png" alt="Facebook"></a>
-                    <a href="#"><img src="assets/Instagram-Logo-Transparent-Image.png" alt="Instagram"></a>
+                    <a href=""><img src="/mon_projet/public/assets/images/facebook-icon 1.png" alt="Facebook"></a>
+                    <a href=""><img src="/mon_projet/public/assets/images/Instagram-Logo-Transparent-Image.png" alt="Instagram"></a>
                 </div>
-               
+              
                 <div class="logo">
-                    <img src="assets/LOGO 3.png" alt=" Entrprise">
+                    <img src="/mon_projet/public/assets/images/LOGO 3.png" alt=" Entrprise">
                    
                 </div>
             </div>

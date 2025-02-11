@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,66 +10,13 @@
     <link rel="stylesheet" href="/frontend/css/swiper-bundle.min.css" />
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <title>Nos Services</title>
-    <link rel="stylesheet" href="css/service.css">
-</head>
+    <link rel="stylesheet" href="/mon_projet/public/assets/css/service.css">    <title>Carte des vins</title>
 </head>
 <body>
+
+<?php include '../src/views/partials/header.php'; ?>
+
     <header>
-        <!-- La Navbar -->
-        <nav class="navbar">
-            
-            <!-- Partie Gauche -->
-            <div class="left-nav">
-                <div class="logo">
-                    <img src="/frontend/assets/logo.png" alt="Logo">
-                </div>
-            </div>
-
-            <!-- Partie Centre -->
-            <div class="mid-nav">
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-
-                    <!-- Menu déroulant Chambres -->
-                    <li class="dropdown">
-                        <a href="chambre.html">Chambres</a>
-                        <ul class="dropdown-content">
-                            <li><a href="chambre.html">Classique</a></li>
-                            <li><a href="chambres-confort.html">Confort</a></li>
-                            <li><a href="chambres-standing.html">Standing</a></li>
-                            <li><a href="chambres-suite.html">Suite</a></li>
-                        </ul>
-                    </li>
-                    <!-- Menu déroulant Restaurant -->
-                    <li class="dropdown">
-                        <a href="#">Restaurant</a>
-                        <ul class="dropdown-content">
-                            <li><a href="chef-equipe.html">Chef & Equipe</a></li>
-                            <li><a href="carte-vins.html">Carte des vins</a></li>
-                            <li><a href="notre-carte.html">Notre Carte</a></li>
-                        </ul>
-                    </li>
-                    <!-- Menu déroulant Services -->
-                    <li class="dropdown">
-                        <a href="service.html">Services</a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Gommage corps en cabine</a></li>
-                            <li><a href="#">Massage relaxant aux huiles essentielles</a></li>
-                            <li><a href="#">Massage tonique</a></li>
-                            <li><a href="#">Massage balinais</a></li>
-                            <li><a href="#">Massage aux pierres chaudes</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li> 
-                </ul>
-            </div>
-
-            <!-- Partie Droite -->
-            <div class="right-nav">
-                <a href="login.html" class="login">Connexion</a>
-                <a href="reservation.html" class="reservation">Réserver</a>
-            </div>
-        </nav>
         <div class="top-section">
             <div class="content">
                 <h1>Nos Services</h1>
@@ -82,33 +31,33 @@
         <div class="slider-container">
             <!-- Slides -->
             <div class="service-item">
-                <img src="assets/gommage-corp.jpg" alt="Gommage corps en cabine">
+                <img src="../public/assets/images/gommage-corp.jpg" alt="Gommage corps en cabine">
                 <h2>Gommage corps en cabine</h2>
                 <p>Offrez à votre peau un gommage complet en cabine pour une douceur absolue.</p>
                 
             </div>
             <div class="service-item">
-                <img src="assets/massage-relaxant.jpeg" alt="Massage relaxant">
+                <img src="../public/assets/images/massage-relaxant.jpeg" alt="Massage relaxant">
                 <h2>Massage relaxant</h2>
                 <p>Détendez-vous avec un massage relaxant aux huiles essentielles.</p>
             </div>
             <div class="service-item">
-                <img src="assets/massage-tonique.jpg" alt="Massage tonique">
+                <img src="../public/assets/images/massage-tonique.jpg" alt="Massage tonique">
                 <h2>Massage tonique</h2>
                 <p>Revigorez votre corps avec notre massage tonique revitalisant.</p>
             </div>
             <div class="service-item">
-                <img src="assets/massage-balinais.jpg" alt="Massage balinais">
+                <img src="../public/assets/images/massage-balinais.jpg" alt="Massage balinais">
                 <h2>Massage balinais</h2>
                 <p>Un massage traditionnel balinais pour une relaxation profonde.</p>
             </div>
             <div class="service-item">
-                <img src="assets/massage-pierre.jpg" alt="Massage aux pierres chaudes">
+                <img src="../public/assets/images/massage-pierre.jpg" alt="Massage aux pierres chaudes">
                 <h2>Massage aux pierres chaudes</h2>
                 <p>Profitez d’un massage apaisant aux pierres chaudes pour détendre vos muscles.</p>
             </div>
             <div class="service-item">
-                <img src="assets/soins-visage.jpg" alt="Soin visage hydratant">
+                <img src="../public/assets/images/soins-visage.jpg" alt="Soin visage hydratant">
                 <h2>Soin visage hydratant</h2>
                 <p>Hydratez et revitalisez votre peau avec notre soin visage.</p>
             </div>
@@ -126,7 +75,7 @@
     <!-- Section Image -->
     <section class="image-section">
         <h2>LA FLÊCHE D'ARGENT</h2>
-        <img src="assets/background4.jpg" alt="Famille à Paris">
+        <img src="../public/assets/images/background4.jpg" alt="Famille à Paris">
         <p>Voyagez ensemble. Nous organisons des itinéraires soigneusement conçus pour maximiser les expériences des enfants et des familles tout en explorant Paris.</p>
     </section>
     
@@ -144,46 +93,8 @@
     </section>
 </section>
 
-    <footer>
-        <div class="footer-content">
- 
-            <h2>Recevez nos dernières offres et actualités</h2>
-            <a href="#">INSCRIVEZ-VOUS </a>
- 
-            <div class="info">
-                <h4>LA FLÊCHE D'ARGENT</h4>
-                <h6>HOTEL ET RESTAURANT <br>
-                    &copy;BORDEAUX</h6>
-       
-                <p>42 avenue Gabriel, 33300 Bordeaux | +33 1 58 36 60 60 | reservations@lapechedargent.com</p>
-            </div>
- 
-            <div class="privacy">
-                <a href="#">PROTECTION DES DONNÉES</a> | <a href="#">CONDITIONS GÉNÉRALES</a>
-            </div>
- 
-            <div class="separator"></div>
- 
-           
-            <div class="divs-container">
-                <div class="privacy">
-                   
-                    <h6>© Copyright 2020-2025 LA FLÊCHE D'ARGENT <br>
-                        Web design & Web development by IPSSI STUDENTS</h6>
-                </div>
-               
-                <div class="socials">
-                    <a href="#"><img src="/frontend/assets/facebook-icon 1.png" alt="Facebook"></a>
-                    <a href="#"><img src="/frontend/assets/Instagram-Logo-Transparent-Image.png" alt="Instagram"></a>
-                </div>
-               
-                <div class="logo">
-                    <img src="/frontend/assets/LOGO 3.png" alt=" Entrprise">
-                   
-                </div>
-            </div>
-        </div>
-    </footer>
+
+<?php include '../src/views/partials/footer.php'; ?>
 
 
     <script>

@@ -1,0 +1,7 @@
+ Détails :
+✅ username → admin123
+✅ email → admin@example.com
+✅ password → "Admin@123" (hashé avec password_hash() en PHP)
+✅ address → "123 Rue des Hôtels, Paris"
+✅ phone → "0123456789"
+✅ role → "admin"

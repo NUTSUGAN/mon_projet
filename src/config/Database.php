@@ -19,8 +19,9 @@ class Database {
             try {
                 // Charger les variables d'environnement si ce n'est pas déjà fait
                 if (!isset($_ENV['DB_HOST'])) {
-                    $dotenv = Dotenv::createImmutable(dirname(__DIR__, 1)); // Aller à la racine du projet
+                    $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2)); // Aller à la racine du projet
                     $dotenv->load();
+
                 }
 
                 // Récupérer les variables d'environnement
@@ -51,3 +52,5 @@ class Database {
         self::$conn = null;
     }
 }
+?>
+
