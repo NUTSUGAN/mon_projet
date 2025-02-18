@@ -19,8 +19,8 @@
             <div class="content-vins">
                 <h1>Notre Carte</h1>
                 <p>Découvrez notre carte de menus !</p>
-                <a href="reservation.html" class="btn-vins">Réservez maintenant</a>
-            </div>
+                <a href="/mon_projet/public/reservation.php" class="btn">Réserver maintenant</a>
+                </div>
         </div>
     </header>
     

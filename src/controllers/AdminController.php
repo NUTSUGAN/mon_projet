@@ -12,7 +12,7 @@ class AdminController {
         $roomModel = new Room($this->db);
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
+            $name = $_POST['name']; 
             $description = $_POST['description'];
             $capacity = $_POST['capacity'];
             $price = $_POST['price'];

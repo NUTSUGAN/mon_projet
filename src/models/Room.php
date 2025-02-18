@@ -1,37 +1,66 @@
 <?php
+namespace Models;
+
+use PDO;
+use PDOException;
+
 class Room {
     private $db;
 
-    public function __construct($db) {
+    public function __construct(PDO $db) {
         $this->db = $db;
     }
 
     public function createRoom($name, $description, $capacity, $price, $imagePath) {
-        $query = $this->db->prepare("INSERT INTO rooms (name, description, capacity, price, image_path) VALUES (:name, :description, :capacity, :price, :image_path)");
-        $query->bindParam(':name', $name);
-        $query->bindParam(':description', $description);
-        $query->bindParam(':capacity', $capacity, PDO::PARAM_INT);
-        $query->bindParam(':price', $price);
-        $query->bindParam(':image_path', $imagePath);
-        $query->execute();
+        try {
+            $query = $this->db->prepare("
+                INSERT INTO rooms (name, description, capacity, price, image_path) 
+                VALUES (:name, :description, :capacity, :price, :image_path)
+            ");
+            $query->bindParam(':name', $name);
+            $query->bindParam(':description', $description);
+            $query->bindParam(':capacity', $capacity, PDO::PARAM_INT);
+            $query->bindParam(':price', $price, PDO::PARAM_STR);
+            $query->bindParam(':image_path', $imagePath);
+
+            if ($query->execute()) {
+                return true;
+            } else {
+                error_log(" Erreur SQL lors de l'insertion de la chambre : " . implode(" ", $query->errorInfo()));
+                return false;
+            }
+        } catch (PDOException $e) {
+            error_log(" Exception SQL : " . $e->getMessage());
+            return false;
+        }
     }
 
     public function getAllRooms() {
-        $query = $this->db->query("SELECT * FROM rooms ORDER BY created_at DESC");
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $query = $this->db->query("SELECT * FROM rooms ORDER BY created_at DESC");
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log(" Erreur SQL lors de la récupération des chambres : " . $e->getMessage());
+            return [];
+        }
     }
 
     public function getAvailableRooms($startDate, $endDate) {
-        $query = $this->db->prepare("
-            SELECT * FROM rooms WHERE id NOT IN (
-                SELECT room_id FROM reservations 
-                WHERE :start_date < end_date AND :end_date > start_date
-            )
-        ");
-        $query->bindParam(':start_date', $startDate);
-        $query->bindParam(':end_date', $endDate);
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $query = $this->db->prepare("
+                SELECT * FROM rooms WHERE id NOT IN (
+                    SELECT room_id FROM reservations 
+                    WHERE :start_date < end_date AND :end_date > start_date
+                )
+            ");
+            $query->bindParam(':start_date', $startDate);
+            $query->bindParam(':end_date', $endDate);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log(" Erreur SQL lors de la récupération des chambres disponibles : " . $e->getMessage());
+            return [];
+        }
     }
 }
 ?>

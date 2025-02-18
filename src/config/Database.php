@@ -15,13 +15,13 @@ class Database {
     }
 
     public static function getConnection(): PDO {
+
         if (self::$conn === null) {
             try {
                 // Charger les variables d'environnement si ce n'est pas déjà fait
                 if (!isset($_ENV['DB_HOST'])) {
                     $dotenv = Dotenv::createImmutable(dirname(__DIR__, 2)); // Aller à la racine du projet
-                    $dotenv->load();
-
+                    $dotenv->load();                    
                 }
 
                 // Récupérer les variables d'environnement
@@ -41,9 +41,11 @@ class Database {
                         PDO::ATTR_PERSISTENT => true // Connexion persistante
                     ]
                 );
+                
             } catch (PDOException $e) {
                 throw new Exception(self::class . " : Erreur de connexion à la base de données - " . $e->getMessage());
             }
+
         }
         return self::$conn;
     }

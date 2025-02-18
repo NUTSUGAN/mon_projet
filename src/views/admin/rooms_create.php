@@ -1,49 +1,49 @@
 <?php
-require_once '../../config/Database.php';
-require_once '../../controllers/AdminController.php';
-
-$db = (new Database())->getConnection();
-$adminController = new AdminController($db);
-$adminController->createRoom(); 
-?>
-
-
-
-<?php
 session_start();
 
-require_once '../../config/Database.php';
-require_once '../../models/Room.php';
+use Controllers\RoomController;
 
-$db = (new Database())->getConnection();
-$roomModel = new Room($db);
+require_once __DIR__ . '/../../../vendor/autoload.php'; // Charger l'autoloader
+
+$roomController = new RoomController();
+$errorMsg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $capacity = $_POST['capacity'];
-    $price = $_POST['price'];
+    // Récupérer les autres champs
+    $name = trim($_POST['name']);
+    $description = trim($_POST['description']);
+    $capacity = (int) $_POST['capacity'];
+    $price = (float) $_POST['price'];
 
-    if (!empty($_FILES['image']['name'])) {
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
-        $imageName = basename($_FILES['image']['name']);
-        $imagePath = '/uploads/' . $imageName;
+        // Gérer le téléchargement de l'image
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+        $uploadDirectory = 'uploads/';  // Répertoire où les images sont enregistrées
 
-        // Déplacer l'image vers le dossier des uploads
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $imageName)) {
-            // Enregistrement de la chambre dans la base de données
-            $roomModel->createRoom($name, $description, $capacity, $price, $imagePath);
-            header('Location: ../public/index.php'); // Redirection vers une page de liste des chambres
-            exit;
+        // Créer le répertoire si il n'existe pas déjà
+        if (!is_dir($uploadDirectory)) {
+            mkdir($uploadDirectory, 0777, true);  // Crée le répertoire avec les permissions appropriées
+        }
+
+        $imagePath = $uploadDirectory . basename($_FILES['image']['name']); // Définir le chemin de l'image
+
+        // Déplacer l'image téléchargée vers le dossier d'upload
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+            // L'image a été téléchargée avec succès, on enregistre la chambre
+            if ($roomController->createRoom($name, $description, $capacity, $price, $imagePath)) {
+                header('Location: ../../../public/index.php?success=1');
+                exit;
+            } else {
+                $errorMsg = "Erreur lors de la création de la chambre en base de données.";
+            }
         } else {
-            echo "<p style='color:red;'>Erreur lors du téléchargement de l'image.</p>";
+            $errorMsg = "Erreur lors du téléchargement de l'image.";
         }
     } else {
-        echo "<p style='color:red;'>Veuillez sélectionner une image.</p>";
+        $errorMsg = "Veuillez sélectionner une image.";
     }
-}
 
-
+ }
+ 
 ?>
 
 <!DOCTYPE html>
@@ -55,8 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-
     <h1>Créer une chambre</h1>
+    
+    <?php if (!empty($errorMsg)): ?>
+        <p style="color:red;"><?= htmlspecialchars($errorMsg) ?></p>
+    <?php endif; ?>
+
     <form method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="Nom de la chambre" required>
         <textarea name="description" placeholder="Description"></textarea>
@@ -65,5 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="file" name="image" accept="image/*" required>
         <button type="submit">Créer</button>
     </form>
+
 </body>
 </html>

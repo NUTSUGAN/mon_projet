@@ -6,7 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/mon_projet/public/assets/css/chambre.css">    <title>Carte des vins</title>
+    <link rel="stylesheet" href="/mon_projet/public/assets/css/chambre.css">    
+    <title>Carte des vins</title>
 </head>
 <body>
 

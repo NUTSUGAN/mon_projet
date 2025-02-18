@@ -21,7 +21,7 @@
         <div class="content">
             <h1>Bienvenue à La Flèche d'Argent</h1>
             <p>Un séjour inoubliable dans un cadre luxueux.</p>
-            <a href="/hotel_projet/src/views/reservation.php" class="btn">Réserver maintenant</a>
+            <a href="/mon_projet/public/reservation.php" class="btn">Réserver maintenant</a>
         </div>
     </div>
 
