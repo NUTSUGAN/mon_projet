@@ -9,41 +9,25 @@ $roomController = new RoomController();
 $errorMsg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les autres champs
+    // Récupérer les champs du formulaire
     $name = trim($_POST['name']);
     $description = trim($_POST['description']);
     $capacity = (int) $_POST['capacity'];
     $price = (float) $_POST['price'];
+    $imagePath = trim($_POST['image_path']); // L'utilisateur entre directement l'URL
 
-        // Gérer le téléchargement de l'image
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-        $uploadDirectory = 'uploads/';  // Répertoire où les images sont enregistrées
-
-        // Créer le répertoire si il n'existe pas déjà
-        if (!is_dir($uploadDirectory)) {
-            mkdir($uploadDirectory, 0777, true);  // Crée le répertoire avec les permissions appropriées
-        }
-
-        $imagePath = $uploadDirectory . basename($_FILES['image']['name']); // Définir le chemin de l'image
-
-        // Déplacer l'image téléchargée vers le dossier d'upload
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-            // L'image a été téléchargée avec succès, on enregistre la chambre
-            if ($roomController->createRoom($name, $description, $capacity, $price, $imagePath)) {
-                header('Location: ../../../public/index.php?success=1');
-                exit;
-            } else {
-                $errorMsg = "Erreur lors de la création de la chambre en base de données.";
-            }
+    // Vérifier que tous les champs sont remplis
+    if (!empty($name) && !empty($description) && $capacity > 0 && $price > 0 && !empty($imagePath)) {
+        if ($roomController->createRoom($name, $description, $capacity, $price, $imagePath)) {
+            header('Location: ../../../public/index.php?success=1');
+            exit;
         } else {
-            $errorMsg = "Erreur lors du téléchargement de l'image.";
+            $errorMsg = "Erreur lors de la création de la chambre en base de données.";
         }
     } else {
-        $errorMsg = "Veuillez sélectionner une image.";
+        $errorMsg = "Tous les champs sont obligatoires.";
     }
-
- }
- 
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p style="color:red;"><?= htmlspecialchars($errorMsg) ?></p>
     <?php endif; ?>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST">
         <input type="text" name="name" placeholder="Nom de la chambre" required>
-        <textarea name="description" placeholder="Description"></textarea>
+        <textarea name="description" placeholder="Description" required></textarea>
         <input type="number" name="capacity" placeholder="Capacité" required>
         <input type="number" step="0.01" name="price" placeholder="Prix par nuit" required>
-        <input type="file" name="image" accept="image/*" required>
+        <input type="text" name="image_path" placeholder="URL de l'image" required> <!-- Champ texte pour l'image -->
         <button type="submit">Créer</button>
     </form>
 
