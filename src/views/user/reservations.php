@@ -1,4 +1,8 @@
 <?php
+
+use Config\Database;
+use Models\Reservation;
+
 session_start();
 
 // Vérification de l'utilisateur connecté

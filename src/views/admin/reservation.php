@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+use Config\Database;
+use Models\Reservation;
+
 // Vérification du rôle de l'administrateur
 if (!isset($_SESSION['user'])) {
     header('Location: /hotel_projet/views/auth/login.php');
@@ -11,9 +14,6 @@ if (!isset($_SESSION['user'])) {
 } else {
     // L'utilisateur est un administrateur, le code peut continuer
 }
-
-require_once '../../config/Database.php';
-require_once '../../models/Reservation.php';
 
 // Connexion à la base de données
 $db = (new Database())->getConnection();

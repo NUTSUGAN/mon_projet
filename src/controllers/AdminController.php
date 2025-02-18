@@ -1,48 +1,46 @@
 <?php
 
+namespace Controllers;
+
+use Models\Room;
+use Config\Database;
+
+
 class AdminController {
     private $db;
 
-    public function __construct($db) {
-        $this->db = $db;
+    public function __construct() {
+        $this->db = Database::getConnection();
     }
 
     public function createRoom() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/hotel_projet/models/Room.php';
         $roomModel = new Room($this->db);
-    
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name']; 
-            $description = $_POST['description'];
-            $capacity = $_POST['capacity'];
-            $price = $_POST['price'];
-            $imagePath = '/uploads/' . basename($_FILES['image']['name']);
-    
-            move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . $imagePath);
-    
-            $roomModel->createRoom($name, $description, $capacity, $price, $imagePath);
-    
-            $this->db = null; // Fermer la connexion
-            header('Location: /hotel_projet/admin/rooms.php');
-            exit;
+            // Récupérer les données du formulaire
+            $name = trim($_POST['name']);
+            $description = trim($_POST['description']);
+            $capacity = (int) $_POST['capacity'];
+            $price = (float) $_POST['price'];
+            $imagePath = trim($_POST['image_path']); // L'URL est entrée manuellement
+
+            // Vérifier que tous les champs sont bien remplis
+            if (!empty($name) && !empty($description) && $capacity > 0 && $price > 0 && !empty($imagePath)) {
+                if ($roomModel->createRoom($name, $description, $capacity, $price, $imagePath)) {
+                    header('Location: /hotel_projet/admin/rooms.php?success=1');
+                    exit;
+                } else {
+                    $errorMsg = "Erreur lors de la création de la chambre.";
+                }
+            } else {
+                $errorMsg = "Tous les champs sont obligatoires.";
+            }
         }
-    
-        $this->db = null; // Fermer la connexion après utilisation
     }
 
     public function listRooms() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/hotel_projet/models/Room.php';
         $roomModel = new Room($this->db);
-    
-        // Utilisez getAllRooms() pour obtenir la liste des chambres
-        $rooms = $roomModel->getAllRooms();
-    
-        // Renvoie la liste des chambres pour l'utiliser dans l'index
-        return $rooms;
+        return $roomModel->getAllRooms(); // Retourne toutes les chambres
     }
-    
-
-    
-    
 }
 ?>

@@ -1,7 +1,9 @@
 <?php
+
+use Config\Database;
+use Controllers\UserController;
+
 session_start();
-require_once '../../config/Database.php';
-require_once '../../controllers/UserController.php';
 
 $db = (new Database())->getConnection();
 $userController = new UserController($db);

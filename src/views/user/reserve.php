@@ -1,12 +1,15 @@
 <?php
+
+
+use Config\Database;
+use Models\Reservation;
+
 session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: /hotel_projet/views/auth/login.php');
     exit;
 }
 
-require_once '../../config/Database.php';
-require_once '../../models/Reservation.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $roomId = $_POST['room_id'] ?? null;
