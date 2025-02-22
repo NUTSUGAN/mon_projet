@@ -4,6 +4,9 @@ session_start();
 use Config\Database;
 use Models\Reservation;
 
+require_once __DIR__ . '/../../../vendor/autoload.php'; // Charger l'autoloader
+
+
 // Vérification du rôle de l'administrateur
 if (!isset($_SESSION['user'])) {
     header('Location: /hotel_projet/views/auth/login.php');
@@ -16,7 +19,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 // Connexion à la base de données
-$db = (new Database())->getConnection();
+$db = Database::getConnection();
 $reservationModel = new Reservation($db);
 
 // Récupération de toutes les réservations

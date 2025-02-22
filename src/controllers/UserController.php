@@ -36,10 +36,17 @@ class UserController {
         return $this->userModel->updateUser();
     }
 
+    
     // Supprimer un utilisateur
     public function deleteUser($id) {
         return $this->userModel->deleteUser($id);
     }
+
+
+    public function getUserById($id) {
+        return $this->userModel->getUserById($id);
+    }
+    
 
     
 }

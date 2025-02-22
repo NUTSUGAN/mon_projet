@@ -8,6 +8,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php'; // Charger l'autoloader
 $roomController = new RoomController();
 $errorMsg = "";
 
+if ($_SESSION['user']['role'] !== 'admin') {
+    header('Location: ../../../public/index.php'); // Redirection si ce n'est pas un admin
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les champs du formulaire
     $name = trim($_POST['name']);

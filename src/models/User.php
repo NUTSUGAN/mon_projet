@@ -100,6 +100,13 @@ class User {
         return $stmt->execute();
     }
 
+
+    public function getUserById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     
 }
 ?>

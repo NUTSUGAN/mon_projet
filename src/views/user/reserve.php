@@ -4,9 +4,11 @@
 use Config\Database;
 use Models\Reservation;
 
+require_once __DIR__ . '/../../../vendor/autoload.php'; 
+
 session_start();
 if (!isset($_SESSION['user'])) {
-    header('Location: /hotel_projet/views/auth/login.php');
+    header('Location: /mon_projet/views/auth/login.php');
     exit;
 }
 
@@ -17,12 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $endDate = $_POST['end_date'] ?? null;
 
     if ($roomId && $startDate && $endDate) {
-        $db = (new Database())->getConnection();
+        $db = Database::getConnection();
+
         $reservationModel = new Reservation($db);
 
         $userId = $_SESSION['user']['id'];
         if ($reservationModel->createReservation($userId, $roomId, $startDate, $endDate)) {
             $message = "<p class='success'>Réservation réussie !</p>";
+            header('Location: ../../../public/index.php?success=1');
+
         } else {
             $message = "<p class='error'>Une erreur est survenue lors de la réservation.</p>";
         }

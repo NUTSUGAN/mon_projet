@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'email' => $email
                     ];
                     $success = "Inscription réussie ! Redirection en cours...";
-                    header("Location: index.php");
+                    header("Location: /mon_projet/public/index.php ");
                     exit();
                 } else {
                     $error = "Erreur lors de l'inscription.";

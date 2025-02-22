@@ -35,15 +35,6 @@ class Room {
         }
     }
 
-    public function getAllRooms() {
-        try {
-            $query = $this->db->query("SELECT * FROM rooms ORDER BY created_at DESC");
-            return $query->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log(" Erreur SQL lors de la récupération des chambres : " . $e->getMessage());
-            return [];
-        }
-    }
 
     public function getAvailableRooms($startDate, $endDate) {
         try {
