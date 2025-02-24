@@ -21,6 +21,8 @@
             <div class="content">
                 <h1>Nos Services</h1>
                 <p>Un séjour inoubliable dans un cadre luxueux.</p>
+                <a href="/mon_projet/public/reservation.php" class="btn">Réserver maintenant</a>
+
             </div>
         </div>
     </header>

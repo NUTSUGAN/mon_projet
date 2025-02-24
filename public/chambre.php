@@ -19,7 +19,7 @@
             <div class="content-vins">
                 <h1>Nos Chambres</h1>
                 <p>Découvrez nos chambres !</p>
-                <a href="reservation.html" class="btn-vins">Réservez maintenant</a>
+                <a href="/mon_projet/public/reservation.php" class="btn-vins">Réservez maintenant</a>
             </div>
         </div>
     </header>

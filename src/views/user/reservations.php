@@ -169,7 +169,7 @@ body {
 
 
 
-        
+
         h1 {
             margin-bottom: 20px;
         }
@@ -291,6 +291,8 @@ body {
             width:-45px;
             height:auto;
         }
+
+       
        
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -323,11 +325,54 @@ body {
         }
 
 
+        .user-menu {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-menu ul li {
+    display: inline;
+}
+
+.user-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: color 0.3s ease;
+}
+
+.user-menu a:hover {
+    color: #e67e22;
+}
+
+
+
     </style>
 </head>
 <body>
 
 <?php include '../partials/header.php'; ?>
+<?php if (isset($_SESSION['user'])): ?>
+    <nav class="user-menu">
+        <ul>
+            <li><a href="user.php">👤 Mon compte</a></li>
+            <li><a href="reservations.php">📅 Mes Réservations</a></li>
+        </ul>
+    </nav>
+<?php endif; ?>
+
 
     <h1>Mes Réservations</h1>
     <?php if (count($reservations) > 0): ?>

@@ -5,6 +5,37 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
+
+<style>
+
+     /* Bouton "Réserver" */
+.reservation {
+    display: inline-block;
+    background-color:rgb(225, 192, 134); /* Bleu principal */
+    color: #fff; /* Texte en blanc */
+    padding: 12px 20px; /* Espace intérieur */
+    font-size: 16px; /* Taille du texte */
+    font-weight: bold;
+    border-radius: 20px; /* Bord arrondi */
+    text-decoration: none; /* Supprimer le soulignement */
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Effet au survol */
+.reservation:hover {
+    background-color:rgb(73, 153, 200); /* Bleu plus foncé */
+    transform: translateY(-2px); /* Légère élévation */
+}
+
+/* Effet au clic */
+.reservation:active {
+    background-color: #004494;
+    transform: scale(0.95);
+}
+
+</style>
+
 <header>
       
     
@@ -51,7 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="right-nav">
 
             <?php if (!empty($_SESSION['user']['username'])): ?>
-                <a href="/mon_projet/public/auth/dashboard.php">Mon Profil</a>
+                <a href="/mon_projet/src/Views/user/user.php">Mon Profil</a>
                 <a href="/mon_projet/src/Views/Auth/logout.php">Déconnexion</a>
             <?php else: ?>
                 <a href="/mon_projet/src/Views/Auth/login.php">Connexion</a>
