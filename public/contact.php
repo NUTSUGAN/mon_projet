@@ -27,7 +27,7 @@
         <!-- Form Section -->
         <div class="form-section">
             <h3>Contactez-nous</h3>
-            <form action="traitement_contact.php" method="post">
+            <form id="contactForm" >
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" required>
 
@@ -75,6 +75,18 @@
             </iframe>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+
+    <script>
+    (function(){
+        emailjs.init("lQ3Kyd5ciUs8Oe6Ht"); // Remplace par ton USER_ID
+    })();
+    </script>
+
+    <script src="assets/js/email.js"></script>
 
     <?php include '../src/views/partials/footer.php'; ?>
 
