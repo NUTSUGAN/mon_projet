@@ -27,8 +27,8 @@
                 </div>
                
                 <div class="socials">
-                    <a href=""><img src="/mon_projet/public/assets/images/facebook-icon 1.png" alt="Facebook"></a>
-                    <a href=""><img src="/mon_projet/public/assets/images/Instagram-Logo-Transparent-Image.png" alt="Instagram"></a>
+                    <a href="#"><img src="/mon_projet/public/assets/images/facebook-icon 1.png" alt="Facebook"></a>
+                    <a href="#"><img src="/mon_projet/public/assets/images/Instagram-Logo-Transparent-Image.png" alt="Instagram"></a>
                 </div>
               
                 <div class="logo">
