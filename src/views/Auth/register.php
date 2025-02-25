@@ -37,13 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $userModel->setData($username, $email, $password, $address, $phone);
 
                 if ($userModel->register()) {
-                    session_regenerate_id(true);
-                    $_SESSION['user'] = [
-                        'username' => $username,
-                        'email' => $email
-                    ];
-                    $success = "Inscription réussie ! Redirection en cours...";
-                    header("Location: /mon_projet/public/index.php ");
+                    $success = "Inscription réussie ! Veuillez vous connecter.";
+                    header("Location: login.php?message=" . urlencode($success));
                     exit();
                 } else {
                     $error = "Erreur lors de l'inscription.";
@@ -66,11 +61,11 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <style>
-body {
+        body {
 
-    margin: 0;
-}
-        /* La Navbar */
+            margin: 0;
+        }
+                /* La Navbar */
         .navbar {
             width: 100%;
             height: 12vh;
@@ -184,21 +179,21 @@ body {
         }
 
         .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Centre uniquement le formulaire */
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Centre uniquement le formulaire */
+        }
 
-.login-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 350px;
-}
-        h1 {
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+                h1 {
             margin-bottom: 20px;
         }
         input {
@@ -320,20 +315,23 @@ body {
             height:auto;
         }
        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
- 
-            .form-section, .map-section {
-                width: 100%;
-            }
- 
-            .form-section {
-                padding: 20px;
-            }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
+
+        .login-link:hover {
+            color: #efa507; /* Couleur dorée au survol */
+            text-decoration: underline;
+        }
+
  
         @media (max-width: 480px) {
             .form-section h3 {
@@ -352,6 +350,7 @@ body {
 
 
     </style>
+
 </head>
 <body>
 
@@ -374,9 +373,10 @@ body {
         <button type="submit">S'inscrire</button>
     </form>
 
-    <a href="login.php">Déjà un compte ? Connectez-vous</a>
+    <a href="login.php" class="login-link">Déjà un compte ? Connectez-vous</a>
 
     <?php include '../partials/footer.php'; ?>
 
 </body>
 </html>
+
