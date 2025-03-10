@@ -47,6 +47,16 @@ class User {
         }
     }
 
+    public function emailExists($email) {
+        $query = "SELECT COUNT(*) FROM users WHERE email = :email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        
+        return $stmt->fetchColumn() > 0; // Retourne vrai si un email est trouvé
+    }
+    
+
     // Connexion de l'utilisateur
     public function login($email, $password) {
         $query = "SELECT * FROM " . $this->table . " WHERE email = :email";

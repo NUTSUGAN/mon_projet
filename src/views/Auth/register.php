@@ -25,15 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $address = trim($_POST['address']);
             $phone = preg_replace('/[^0-9]/', '', $_POST['phone']);
 
-            // Vérifications
+            // Vérifications de base
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $error = "Adresse email invalide.";
             } elseif (strlen($password) < 6) {
                 $error = "Le mot de passe doit contenir au moins 6 caractères.";
             } elseif (!preg_match('/^\d{10,15}$/', $phone)) {
                 $error = "Le numéro de téléphone doit contenir entre 10 et 15 chiffres.";
+            } elseif ($userModel->emailExists($email)) {  // Vérifie si l'email existe déjà
+                $error = "Cette adresse email est déjà utilisée.";
             } else {
-                // Enregistrement
+                // Enregistrement si l'email n'existe pas
                 $userModel->setData($username, $email, $password, $address, $phone);
 
                 if ($userModel->register()) {
@@ -49,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 
 // Générer un token CSRF
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));

@@ -5,12 +5,11 @@ use Models\Reservation;
 
 require_once __DIR__ . '/../../../vendor/autoload.php'; 
 
-
 session_start();
 
 // Vérification de l'utilisateur connecté
 if (!isset($_SESSION['user'])) {
-    header('Location: /hotel_projet/views/auth/login.php');
+    header('Location: /mon_projet/views/auth/login.php');
     exit;
 }
 
@@ -27,19 +26,30 @@ $reservations = $reservationModel->getUserReservations($userId);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         $reservationId = $_POST['reservation_id'];
+        
         if ($_POST['action'] === 'update') {
             $newStartDate = $_POST['start_date'];
             $newEndDate = $_POST['end_date'];
-            $reservationModel->updateReservation($reservationId, $newStartDate, $newEndDate);
-            echo "<p style='color:green;'>Réservation mise à jour avec succès.</p>";
+
+            // Vérifier que la nouvelle date de début n'est pas dans le passé
+            if (strtotime($newStartDate) < strtotime(date('Y-m-d'))) {
+                $_SESSION['message'] = "<p class='error'>Vous ne pouvez pas choisir une date passée.</p>";
+            } else {
+                $reservationModel->updateReservation($reservationId, $newStartDate, $newEndDate);
+                $_SESSION['message'] = "<p class='success'>Réservation mise à jour avec succès.</p>";
+            }
+
         } elseif ($_POST['action'] === 'delete') {
             $reservationModel->deleteReservation($reservationId);
-            echo "<p style='color:green;'>Réservation annulée avec succès.</p>";
+            $_SESSION['message'] = "<p class='success'>Réservation annulée avec succès.</p>";
         }
     }
-    // Recharge les réservations après action
-    $reservations = $reservationModel->getUserReservations($userId);
+
+    // Redirection pour éviter le renvoi du formulaire lors du rechargement de la page
+    header('Location: reservations.php');
+    exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -292,6 +302,26 @@ body {
             height:auto;
         }
 
+
+        .message-container {
+            text-align: center;
+            margin: 15px auto;
+            padding: 10px;
+            max-width: 600px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .success {
+            color: #27ae60;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+
+
        
        
         /* Responsive adjustments */
@@ -373,6 +403,13 @@ body {
     </nav>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="message-container">
+        <?= $_SESSION['message']; ?>
+    </div>
+    <?php unset($_SESSION['message']); // Supprime le message après affichage ?>
+<?php endif; ?>
+
 
     <h1>Mes Réservations</h1>
     <?php if (count($reservations) > 0): ?>
@@ -414,3 +451,4 @@ body {
 
 </body>
 </html>
+

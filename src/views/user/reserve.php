@@ -1,6 +1,5 @@
 <?php
 
-
 use Config\Database;
 use Models\Reservation;
 
@@ -12,32 +11,37 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+$message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $roomId = $_POST['room_id'] ?? null;
     $startDate = $_POST['start_date'] ?? null;
     $endDate = $_POST['end_date'] ?? null;
 
-    if ($roomId && $startDate && $endDate) {
+    // Vérification des dates (empêcher la sélection de jours passés)
+    $today = date('Y-m-d'); // Récupère la date actuelle au format YYYY-MM-DD
+    if ($startDate < $today || $endDate < $today) {
+        $message = "<p class='error'>Vous ne pouvez pas réserver pour une date passée.</p>";
+    } elseif ($startDate >= $endDate) {
+        $message = "<p class='error'>La date de fin doit être après la date de début.</p>";
+    } elseif ($roomId && $startDate && $endDate) {
         $db = Database::getConnection();
-
         $reservationModel = new Reservation($db);
-
         $userId = $_SESSION['user']['id'];
-        if ($reservationModel->createReservation($userId, $roomId, $startDate, $endDate)) {
-            $message = "<p class='success'>Réservation réussie !</p>";
-            header('Location: ../../../public/index.php?success=1');
 
+        if ($reservationModel->createReservation($userId, $roomId, $startDate, $endDate)) {
+            header('Location: ../../../public/index.php?success=1');
+            exit;
         } else {
             $message = "<p class='error'>Une erreur est survenue lors de la réservation.</p>";
         }
 
         $db = null;
-        exit;
     } else {
         $message = "<p class='error'>Veuillez remplir tous les champs requis.</p>";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div>
         <h1>Réserver une chambre</h1>
-        <?php if (isset($message)) echo $message; ?>
+        <?php if ($message) echo $message; ?>
         <form method="POST">
             <?php $roomId = htmlspecialchars($_POST['room_id'] ?? ''); ?>
             <?php if (!$roomId): ?>
@@ -137,10 +141,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" name="room_id" value="<?= $roomId ?>">
             <label for="start_date">Date de début :</label>
             <input type="date" id="start_date" name="start_date" required>
+
             <label for="end_date">Date de fin :</label>
             <input type="date" id="end_date" name="end_date" required>
+
             <button type="submit">Réserver</button>
         </form>
     </div>
+
+    <script>
+        // Définir la date minimale pour empêcher la sélection des jours passés
+        document.addEventListener("DOMContentLoaded", function () {
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("start_date").setAttribute("min", today);
+            document.getElementById("end_date").setAttribute("min", today);
+        });
+
+        // S'assurer que la date de fin ne soit pas avant la date de début
+        document.getElementById("start_date").addEventListener("change", function () {
+            document.getElementById("end_date").setAttribute("min", this.value);
+        });
+    </script>
+
 </body>
 </html>
