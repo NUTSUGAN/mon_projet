@@ -16,6 +16,7 @@
 
 <?php include '../src/views/partials/header.php'; ?>
 
+    <header>
     <!-- Partie top section avec image -->
     <div class="top-section">
         <div class="content">
@@ -24,6 +25,7 @@
             <a href="/mon_projet/public/reservation.php" class="btn">Réserver maintenant</a>
         </div>
     </div>
+    </header>
 
      <!--------------- Deuxième page  --------------->
      <section class="presentation-spa">
@@ -62,7 +64,9 @@
         <div class="top-section3">
             <h1>NOS CHAMBRES</h1>
             <div class="undertitle">
-                <h3>La Flèche d'Argent : l'élégance intemporelle au cœur d'un cadre raffiné et prestigieux.</h3>
+                <h3>La Flèche d'Argent : </h3> 
+                <hr>
+                     l'élégance intemporelle au cœur d'un cadre raffiné et prestigieux.</h3>
 
             </div>
         </div>
@@ -76,7 +80,7 @@
                         Découvrez ses 28 chambres et suites de 25 à 100m2, avec terrasses privatives dotées de jacuzzis.</h3>
                 </div>
                 <div class="btn-plus3">
-                    <a href="" class="btn-content3">VOIR PLUS</a>
+                    <a href="/mon_projet/public/reservation.php" class="btn-content3">VOIR PLUS</a>
                 </div>
             </div>
         </div>

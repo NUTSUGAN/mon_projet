@@ -63,7 +63,8 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-    <style>
+
+<style>
         body {
 
             margin: 0;
@@ -352,12 +353,13 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
 
 
-    </style>
+</style>
 
 </head>
 <body>
 
 <?php include '../partials/header.php'; ?>
+
     <h1>Inscription</h1>
 
     <?php if (!empty($error)) : ?>

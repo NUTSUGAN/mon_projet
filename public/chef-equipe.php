@@ -19,7 +19,7 @@
             <div class="content-vins">
                 <h1>Notre Chef & Equipe</h1>
                 <p>Découvrez notre chef</p>
-                <a href="/mon_projet/public/reservation.php" class="btn">Réserver maintenant</a>
+                <a href="/mon_projet/public/reservation.php" class="btn-vins">Réserver maintenant</a>
                 </div>
         </div>
     </header>

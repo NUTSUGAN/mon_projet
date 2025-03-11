@@ -56,10 +56,6 @@
 
     <!------------- 2E PAGE Troisième Page ---------------->
     <section class="presentation-restaurant">
-        <div class="left-page-r">
-            <div class="left-box-r"></div>
-        </div>
-
         <div class="right-page-r">
             <div class="right-box-r">
                 <div class="content-top-r">
@@ -81,6 +77,11 @@
                  </div>
             </div>
         </div>
+
+        <div class="left-page-r">
+            <div class="left-box-r"></div>
+        </div>
+
     </section>
 
     <!--------------- 3E IMAGE Quatrième page STANDING  --------------->
@@ -114,10 +115,6 @@
 
     <!------------- 4E IMAGE Cinquième Page SUITE ---------------->
     <section class="presentation-restaurant">
-        <div class="left-page-s">
-            <div class="left-box-s"></div>
-        </div>
-
         <div class="right-page-r">
             <div class="right-box-r">
                 <div class="content-top-r">
@@ -139,7 +136,17 @@
                  </div>
             </div>
         </div>
+
+        <div class="left-page-s">
+            <div class="left-box-s"></div>
+        </div>
+
     </section>
+    
+    <div class="res">
+       <a href="/mon_projet/public/reservation.php" class="btn-vins">Réservez maintenant</a>
+    </div>
+
     
     <?php include '../src/views/partials/footer.php'; ?>
 
